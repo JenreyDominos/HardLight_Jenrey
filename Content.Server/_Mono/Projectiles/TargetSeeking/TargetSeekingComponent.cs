@@ -1,12 +1,6 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 LaCumbiaDelCoronavirus
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 RikuTheKiller
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
+using System.Numerics;
 
-namespace Content.Server.Mono.Projectiles.TargetSeeking;
+namespace Content.Server._Mono.Projectiles.TargetSeeking;
 
 /// <summary>
 /// Component that allows a projectile to seek and track targets autonomously.
@@ -21,10 +15,10 @@ public sealed partial class TargetSeekingComponent : Component
     public float DetectionRange = 300f;
 
     /// <summary>
-    /// Minimum angular deviation from directly facing the target.
+    /// Angular range in which targets can be detected and tracked.
     /// </summary>
     [DataField]
-    public Angle Tolerance = Angle.FromDegrees(1);
+    public Angle ScanArc = Angle.FromDegrees(360);
 
     /// <summary>
     /// How quickly the projectile can change direction in degrees per second.
@@ -39,16 +33,10 @@ public sealed partial class TargetSeekingComponent : Component
     public EntityUid? CurrentTarget;
 
     /// <summary>
-    /// Should tracked entities know that they are being tracked?
-    /// </summary>
-    [DataField]
-    public bool ExposesTracking = true;
-
-    /// <summary>
     /// Tracking algorithm used for intercepting the target.
     /// </summary>
     [DataField]
-    public TrackingMethod TrackingAlgorithm = TrackingMethod.AdvancedPredictive;
+    public TrackingMethod TrackingAlgorithm = TrackingMethod.Predictive;
 
     /// <summary>
     /// How fast the projectile accelerates in m/s².
@@ -69,53 +57,40 @@ public sealed partial class TargetSeekingComponent : Component
     public float LaunchSpeed = 10f;
 
     /// <summary>
-    /// Has the projectile had its launch speed applied yet?
+    /// Current speed of the projectile in m/s.
     /// </summary>
     [DataField]
-    public bool Launched = false;
-
-    /// <summary>
-    /// Current speed of the projectile in m/s. Managed by TargetSeekingSystem.
-    /// </summary>
-    [DataField]
-    public float CurrentSpeed = 0f;
-
-    /// <summary>
-    /// The amount of time in seconds left the missile starts searching for targets. // Mono
-    /// </summary>
-    [DataField]
-    public float TrackDelay = 0f;
+    public float CurrentSpeed;
 
     /// <summary>
     /// Field of view in degrees for target detection.
     /// </summary>
     [DataField]
-    public float ScanArc = 90f;
+    public float FieldOfView = 90f;
 
     /// <summary>
-    /// Whether seeking has been disabled (e.g., after entering an enemy grid).
+    /// Used for tracking metrics between updates.
     /// </summary>
-    public bool SeekingDisabled;
+    public float PreviousDistance;
+
+    /// <summary>
+    /// Previous position of the target, used for velocity calculation.
+    /// </summary>
+    public Vector2 PreviousTargetPosition;
 }
 
 /// <summary>
 /// Defines different tracking algorithms that can be used.
 /// </summary>
-[Serializable]
 public enum TrackingMethod
 {
     /// <summary>
-    /// Basic tracking that simply points directly at the target.
-    /// </summary>
-    Direct = 1,
-
-    /// <summary>
     /// Advanced tracking that predicts target movement.
     /// </summary>
-    Predictive = 2,
+    Predictive = 1,
 
     /// <summary>
-    /// Even more accurate tracking.
+    /// Basic tracking that simply points directly at the target.
     /// </summary>
-    AdvancedPredictive = 3
+    Direct = 2
 }
