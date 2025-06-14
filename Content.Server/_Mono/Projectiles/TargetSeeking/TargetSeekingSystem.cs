@@ -118,7 +118,7 @@ public sealed class TargetSeekingSystem : EntitySystem
             var currentRotation = _transform.GetWorldRotation(transform);
 
             var angleDifference = Angle.ShortestDistance(currentRotation, angleToTarget).Degrees;
-            if (MathF.Abs((float)angleDifference) > component.FieldOfView / 2)
+            if (MathF.Abs((float)angleDifference) > component.ScanArc / 2)
             {
                 continue;
             }
@@ -217,7 +217,7 @@ public sealed class TargetSeekingSystem : EntitySystem
             uid,
             targetAngle,
             frameTime,
-            comp.ScanArc,
+            comp.Tolerance,
             comp.TurnRate?.Theta ?? MathF.PI * 2,
             xform
         );
@@ -248,7 +248,7 @@ public sealed class TargetSeekingSystem : EntitySystem
             uid,
             angleToTarget,
             frameTime,
-            comp.ScanArc,
+            comp.Tolerance,
             comp.TurnRate?.Theta ?? MathF.PI * 2,
             xform
         );
