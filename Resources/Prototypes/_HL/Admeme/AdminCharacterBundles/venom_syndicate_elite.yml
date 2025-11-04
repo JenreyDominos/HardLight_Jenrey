@@ -328,7 +328,7 @@
 
 - type: hitscan
   id: SmallOverchargedLaser
-  fireStacks: 0.4
+  #fireStacks: 0.4
   damage:
     types:
       Heat: 10
@@ -389,6 +389,7 @@
   impactFlash:
     sprite: _Goobstation/Objects/Weapons/Guns/Projectiles/small_laser.rsi
     state: impact_beam_light_overcharged
+
 
 
 
