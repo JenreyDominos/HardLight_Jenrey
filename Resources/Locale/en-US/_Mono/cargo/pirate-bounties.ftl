@@ -9,4 +9,4 @@ pirate-bounty-item-gcs = gunnery control server
 pirate-bounty-item-pmc-gun = PMC registered firearm
 pirate-bounty-item-n2-o2-air = life support canister
 
-pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
+# pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
