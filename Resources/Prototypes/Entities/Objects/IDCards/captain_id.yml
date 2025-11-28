@@ -5,4 +5,4 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/id_cards.rsi
-    state: captain
+    state: idcaptain
