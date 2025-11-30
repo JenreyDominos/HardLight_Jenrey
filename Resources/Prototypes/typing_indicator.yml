@@ -58,8 +58,3 @@
   id: diona
   typingState: diona0
   offset: 0, 0.125
-
-- type: typingIndicator
-  id: feroxi
-  typingState: feroxi0
-  offset: 0, 0.125

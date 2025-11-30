@@ -24,7 +24,7 @@
   id: ClothingBeltStorageBase
   components:
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal
     defaultStorageOrientation: Vertical
     grid:
     - 0,0,7,1
