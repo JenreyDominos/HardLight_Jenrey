@@ -24,7 +24,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxmax
   categories: [ HideSpawnMenu ]
-  name: QM's luxury maxim hardsuit helmet
+  name: luxury maxim hardsuit helmet
   description: This thing is made of solid gold, its a wonder you can keep your head up with it on.
   components:
   - type: Sprite
