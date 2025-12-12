@@ -557,6 +557,8 @@
     - GygaxMechParts
     - MechWeapons
     - RipleyUpgrade
+    # Crescent - Cyberware
+    - CombatCybernetics
   - type: EmagLatheRecipes
     emagStaticPacks:
     - WeaponMechCombatArsenal
@@ -698,6 +700,8 @@
     - HeavyShuttleWeapons
     - MediumShuttleWeapons
     - LightShuttleWeapons
+    # Crescent - Cyberware
+    - CombatCybernetics
   - type: MaterialStorage
     canEjectStoredMaterials: true
     whitelist:
